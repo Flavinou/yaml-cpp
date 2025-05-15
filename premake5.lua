@@ -1,16 +1,15 @@
 ﻿project "yaml-cpp"
 	kind "StaticLib"
 	language "C++"
-	cppdialect "C++17"
-	staticruntime "on"
 
-	targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files
 	{
 		"src/**.h",
 		"src/**.cpp",
+
 		"include/**.h"
 	}
 
@@ -26,10 +25,14 @@
 
 	filter "system:windows"
 		systemversion "latest"
+		cppdialect "C++17"
+		staticruntime "off"
 
 	filter "system:linux"
 		pic "On"
 		systemversion "latest"
+		cppdialect "C++17"
+		staticruntime "off"
 
 	filter "configurations:Debug"
 		runtime "Debug"
